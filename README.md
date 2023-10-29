@@ -1,18 +1,17 @@
-<center>
+<div align="center">
 
 <img src="https://github.com/memphisdev/onboarding-app/blob/master/docs/Newsletter.jpg" />
 
 <h2>Onboarding Tutorial For Memphis.dev!</h2>
 
 <p>
-To access additional tutorials, code examples, and guides, kindly explore the <a href="https://github.com/memphisdev/memphis-dev-academy">Memphis Academy</a> repository or consult our <a href="https://docs.memphis.dev">documentation</a>.
+To access additional tutorials, code examples, and guides,<br>kindly explore the <a href="https://github.com/memphisdev/memphis-dev-academy">Memphis Academy</a>repository or consult our <a href="https://docs.memphis.dev">documentation</a>.
 </p>
 
-</center>
+</div>
 
 <br>
-To showcase the interaction of microservices and event-driven architecture with Memphis.dev as a message broker, We developed <b>Fastmart</b> -<br> 
-The fastest food delivery app ever created in the history of mankind 🎉
+To showcase the interaction of microservices and event-driven architecture with Memphis.dev as a message broker,<br>We developed <b>Fastmart - The Fastest Food Delivery App Ever Created In The History Of Mankind 🎉</b>
 
 ## High-Level Plan
 
