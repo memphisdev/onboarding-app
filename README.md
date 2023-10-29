@@ -1,6 +1,6 @@
-![Newsletter](https://github.com/memphisdev/onboarding-app/assets/70286779/697ca291-20e2-4cdb-bef0-376be34e2a06)
-
 <center>
+
+<img src="https://github.com/memphisdev/onboarding-app/blob/master/docs/Newsletter.jpg" />
 
 <h2>Onboarding Tutorial For Memphis.dev!</h2>
 
