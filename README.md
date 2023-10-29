@@ -37,91 +37,45 @@ Acts as a Memphis Consumer from two stations simultaneously.
 
 - <b>Delivery Station</b>: A queue for incoming deliveries.
 
-## Getting started
+## 💫 Benefits of using a Message Broker
+Using a message broker instead, for example, REST for microservice communication offers several benefits, including:
 
-1\. Sign up to Memphis.dev Cloud
---------------------------------
+1. Decoupling and Flexibility: Message brokers decouple microservices, allowing them to communicate without being directly dependent on one another.
 
-Please head to [Memphis.dev Cloud](https://cloud.memphis.dev) Signup, and create a free acount.
+2. Reliability and Resilience: Message brokers can handle message persistence and delivery, ensuring reliable communication even in the face of service failures or network issues. 
 
-Memphis.dev Dashboard
+3. Asynchronous Communication: Message brokers enable asynchronous communication, which means that microservices can send and receive messages independently, reducing latency and improving overall system responsiveness. This is particularly valuable for handling high loads and peak traffic.
 
-2\. Clone the Fastmart repo
----------------------------
+4. Load Balancing and Scalability: Message brokers can distribute messages across multiple instances of microservices, enabling load balancing and horizontal scalability. This ensures that the system can efficiently manage increased traffic and maintain performance as the application grows.
 
+## 🚩 Getting started
+
+1. Clone the repo to your local machine
+2. <a href="https://cloud.memphis.dev">Signup</a> to Memphis.dev Cloud or <a href="https://memphis.dev/docs">Deploy</a> the self-hosted version
+3. For the next step, you would need to:
+   1. Copy your broker's `hostname`
+   2. Create a user of type `Client`
+   3. For cloud users only - Copy your `Account ID`
+4. For the services `order` and `restaurant` create a `.env` file, place it in the service's root dir with the below variables, and values from step 3:
 ```
-git clone https://github.com/yanivbh1/FastMart.git
+MEMPHIS_HOST = ""
+MEMPHIS_USERNAME = ""
+MEMPHIS_PASSWORD = ""
+MEMPHIS_ACCOUNTID = ""
 ```
-
-3\. Review the System Architecture, Code, and Flow
---------------------------------------------------
-
-Follow the numbers to understand the flow.
-
-[FastMart](https://github.com/yanivbh1/FastMart) has three main components:
-
-`**order-service**` - Exposes REST endpoints that allow clients to fetch the food menu, place an order and track the order in real-time.
-
-A new order will be saved in mongo with the status “Pending” and will be produced (Pushed) into the “orders” station
-
+5. For the service `email` create a `.env` file, place it in the service's root dir with the below variables, and values from step 3:
 ```
-GET: /<orderId>  
-Example: curl [http://order-service:3000/30](http://order-service:3000/30)POST: /<order\_details>  
-Example: curl -X POST [http://order-service:3000/api/orders](http://order-service:3000/api/orders) -d ‘{“items”:\[{“name”:”burger”,”quantity”:1}\], “email”:”test@test.com”}’ -H ‘Content-Type: application/json’
+MEMPHIS_HOST = ""
+MEMPHIS_USERNAME = ""
+MEMPHIS_PASSWORD = ""
+MEMPHIS_ACCOUNTID = ""
+EMAIL_ID="" # From
+EMAIL_PWD="" # Password
+EMAIL_SERVICE="gmail"
+EMAIL_RECIPIENT="" # cc
 ```
-
-The code responsible for communicating with Memphis will be found on -
-
-`./order-service/src/services/mqService.js`
-
-`**email-service**` - Responsible for notifying the client of the different stages.
-
-email-service consumer messages from two stations: `orders` and `notifications.`
-
-As soon as an order is inserted into the station, the email service notifies the client with an order confirmation.
-
-At the same time listens for new notification requests of other services
-
-`**resturant-service**` - Responsible for fulfilling an order.
-
-1.  Consume an order
-2.  Process the order
-3.  Change order status at the MongoDB level to “Accepted”
-4.  Using constant sleep time to mimic the preparation of the food by the restaurant
-5.  Change order status at the MongoDB level to “Delivered”
-6.  Sending notifications to the client
-
-4\. Deploy “Fastmart” over Kubernetes
--------------------------------------
-
-Fastmart repo tree -
-
-Fastmart files tree
-
-To deploy the Fastmart namespace and different services,
-
-please run `kubectl apply -f k8s-deployment.yaml`
-
-```
-kubectl get pods -n fastmart
-```
-
-Output -
-
-Let’s understand why Fastmart services cant start
-
-```
-kubectl logs email-service-5ddb9b58d6-bq2xd -n fastmart
-```
-
-Output -
-
-It appears that the services try to connect to “Memphis” with the user “Fastmart” which does not exist, and we require to create it.
-
-**Once the user gets created, the pods will restart automatically and reconnect with Memphis.**
-
-5\. Order food! (API guide)
----------------
+6. Within each service's root dir, please run `node index.js`
+7. <b>Try it out!</b> (replace the `order-service:3001` with your service. Usually `localhost:3001`)
 
 Welcome
 
@@ -135,20 +89,18 @@ Get the menu
 curl order-service:3001/api/menu
 ```
 
-Output -
-
-```
-{“items”:\[{“name”:”burger”,”price”:50},{“name”:”fries”,”price”:20},{“name”:”coke”,”price”:10}\]}
-```
-
 Place an order
 
 ```
 curl -X POST order-service:3001/api/orders -d '{"items":[{"name":"burger","quantity":1}], "email":"test@gmail.com"}' -H 'Content-Type: application/json'
 ```
+<div align="center">
 
-An email should arrive shortly at the email address specified above.
+<h2>🍻Great job!</h2>
 
-Thanks!
+<h4>Continue your learning with <a href="https://docs.memphis.dev/memphis/getting-started/tutorials">these tutorials</a> next!</h4>
 
-[**Join 4500+ others and sign up for our data engineering newsletter**](https://memphis.dev/newsletter)**.**
+</div>
+<br>
+
+Sharpen your skills! <a href="ttps://memphis.dev/newsletter">Join</a> 4500+ others and sign up for our data engineering newsletter

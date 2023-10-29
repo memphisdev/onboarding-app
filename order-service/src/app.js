@@ -5,7 +5,7 @@ const { addRoutes } = require('./routes/api');
 const { MORGAN_CONFIG } = require('./resources/constants');
 const { logger } = require('./services/loggerService');
 const { errorHandlerMiddleware } = require('./services/errorHandlingService');
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3001;
 const { injectPublishService, memphisConnect } = require('./services/mqService');
 
 startServer = () => {
