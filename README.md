@@ -1,23 +1,21 @@
 ![Newsletter](https://github.com/memphisdev/onboarding-app/assets/70286779/697ca291-20e2-4cdb-bef0-376be34e2a06)
 
+<center>
 
-For the full version of the tutorial, please head [here](https://medium.com/memphis-dev/how-to-build-your-own-wolt-app-b220d738bb71).
+<h2>Onboarding Tutorial For Memphis.dev!</h2>
 
-Meet Fastmart — The fastest and most reliable food delivery app ever built.
----------------------------------------------------------------------------
+<p>
+To access additional tutorials, code examples, and guides, kindly explore the <a href="https://github.com/memphisdev/memphis-dev-academy">Memphis Academy</a> repository or consult our <a href="https://docs.memphis.dev">documentation</a>.
+</p>
 
-The stack we will use -
------------------------
+</center>
 
-*   [MongoDB](https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwiepJO1w-73AhWDy9UKHckVC9YYABAAGgJ3cw&ae=2&ohost=www.google.com&cid=CAESa-D2LPDT65ajtkN3KBf2gl_myehZptcDfGIRt3kNpTUkz0Jeowy9sHEQVGxb08MuungtyWlm0G9k81_Uz5cQYU-qp1cu8v2uMuDKjZlq1UfG7TIjpmBJCDx-Ik31Op0wJLYTyhQGu8m9M_EU&sig=AOD64_2izE6JD1Sc5Xw-GOch-HPnB_gTWQ&q=&adurl=&ved=2ahUKEwjmooq1w-73AhUq4YUKHaksBFgQ0Qx6BAgDEAE) for orders persistency.
-*   [Node.js](http://nodejs.org) as our primary dev-lang.
-*   [Memphis.dev](https://memphis.dev) as the used message broker.
-*   [Kubernetes](https://kubernetes.io/) to host our microservices.
+<br>
+To showcase the interaction of microservices and event-driven architecture with Memphis.dev as a message broker, We developed <b>Fastmart</b> -<br> 
+The fastest food delivery app ever created in the history of mankind 🎉
 
-Event-driven architecture using Message Broker
+## High-Level Plan
 
-High-Level Plan
----------------
 
 1.  Sign up to Memphis Cloud [here](https://memphis.dev).
 2.  Clone “Fastmart” [GitHub](https://github.com/yanivbh1/FastMart) repo.
