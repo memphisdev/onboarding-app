@@ -1,11 +1,11 @@
 <div align="center">
 
-<img src="https://github.com/memphisdev/onboarding-app/blob/master/docs/Newsletter.jpg" />
+<img src="https://github.com/memphisdev/onboarding-app/blob/master/docs/Banner.jpg" />
 
 <h2>Onboarding Tutorial For Memphis.dev!</h2>
 
 <p>
-To access additional tutorials, code examples, and guides,<br>kindly explore the <a href="https://github.com/memphisdev/memphis-dev-academy">Memphis Academy</a>repository or consult our <a href="https://docs.memphis.dev">documentation</a>.
+To access additional tutorials, code examples, and guides,<br>kindly explore the <a href="https://github.com/memphisdev/memphis-dev-academy">Memphis Academy</a> repository or consult our <a href="https://docs.memphis.dev">documentation</a>.
 </p>
 
 </div>
