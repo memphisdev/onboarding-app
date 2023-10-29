@@ -1,3 +1,6 @@
+![Newsletter](https://github.com/memphisdev/onboarding-app/assets/70286779/697ca291-20e2-4cdb-bef0-376be34e2a06)
+
+
 For the full version of the tutorial, please head [here](https://medium.com/memphis-dev/how-to-build-your-own-wolt-app-b220d738bb71).
 
 Meet Fastmart — The fastest and most reliable food delivery app ever built.
