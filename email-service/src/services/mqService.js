@@ -36,16 +36,14 @@ const memphisConnect = async () => {
             // processing
             logger.info("---> Orders station: New order received by the restaurant. Notifying the customer.")
             logger.info(order.getData().toString())
-            order.ack()
-            // sendConfirmation(order);
+            sendConfirmation(order);
         });
 
         deliveryStation_consumer.on("message", (notification, context) => {
             // processing
             logger.info("---> Ready_to_deliver station: An order is ready for delivery. Notifying the customer.")
             logger.info(notification.getData().toString())
-            notification.ack()
-            // sendNotificationViaEmail(notification);
+            sendNotificationViaEmail(notification);
         });
     }
     catch (ex) {

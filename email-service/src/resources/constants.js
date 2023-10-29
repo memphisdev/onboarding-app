@@ -1,5 +1,5 @@
-const EMAIL_SUBJECT = 'Fastmart Order Confirmation';
-const EMAIL_TEXT_DEFAULT = 'Thank you for ordering from Fastmart. ';
+const EMAIL_SUBJECT = '[Memphis.dev] Fastmart Order Status Update';
+const EMAIL_TEXT_DEFAULT = 'We appreciate your order at Fastmart!';
 
 module.exports = {
     EMAIL_SUBJECT: EMAIL_SUBJECT,

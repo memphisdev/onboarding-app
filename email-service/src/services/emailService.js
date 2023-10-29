@@ -1,19 +1,15 @@
 const nodemailer = require('nodemailer');
 const EMAIL_ID = process.env.EMAIL_ID;
 const EMAIL_PWD = process.env.EMAIL_PWD;
-const EMAIL_SERVICE = process.env.EMAIL_SERVICEז;
+const EMAIL_SERVICE = process.env.EMAIL_SERVICE;
 
-try{
-  const transporter = nodemailer.createTransport({
-    service: EMAIL_SERVICE,
-    auth: {
-      user: EMAIL_ID,
-      pass: EMAIL_PWD
-    }
-  });
-} catch (error){
-    console.error(error);
-}
+const transporter = nodemailer.createTransport({
+  service: EMAIL_SERVICE,
+  auth: {
+    user: EMAIL_ID,
+    pass: EMAIL_PWD
+  }
+});
 
 /**
  * Send Email.
