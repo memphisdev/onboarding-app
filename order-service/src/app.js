@@ -1,17 +1,14 @@
+require('dotenv').config()
 const express = require('express');
 const morgan = require('morgan');
 const { addRoutes } = require('./routes/api');
 const { MORGAN_CONFIG } = require('./resources/constants');
 const { logger } = require('./services/loggerService');
 const { errorHandlerMiddleware } = require('./services/errorHandlingService');
-const { mongoConnect } = require('./services/mongoService');
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 const { injectPublishService, memphisConnect } = require('./services/mqService');
 
 startServer = () => {
-    // mongo connection
-    mongoConnect();
-
     // establish mq connection
     memphisConnect();
     

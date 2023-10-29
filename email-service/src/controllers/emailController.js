@@ -3,10 +3,11 @@ const { logger } = require('../services/loggerService');
 const { EMAIL_SUBJECT, EMAIL_TEXT_DEFAULT } = require('../resources/constants');
 
 const EMAIL_ID = process.env.EMAIL_ID;
+const EMAIL_RECIPIENT = process.env.EMAIL_RECIPIENT;
 
 var mailOptions = {
     from: EMAIL_ID,
-    to: '',
+    to: EMAIL_RECIPIENT,
     subject: EMAIL_SUBJECT,
     text: EMAIL_TEXT_DEFAULT
   };

@@ -1,10 +1,10 @@
-const memphis = require("memphis-dev");
+const { memphis } = require('memphis-dev');
 const { sendConfirmation, sendNotificationViaEmail } = require('../controllers/emailController')
 const { logger } = require('./loggerService')
-const MEMPHIS_HOST = process.env.MEMPHIS_HOST || 'localhost'; // create MQ connection string using environment variable
-const MEMPHIS_USERNAME = process.env.MEMPHIS_USERNAME || 'fastmart';
-const MEMPHIS_PASSWORD = process.env.MEMPHIS_PASSWORD || 'memphis';
-const MEMPHIS_ACCOUNTID = process.env.MEMPHIS_ACCOUNTID || '212111111';
+const MEMPHIS_HOST = process.env.MEMPHIS_HOST;
+const MEMPHIS_USERNAME = process.env.MEMPHIS_USERNAME;
+const MEMPHIS_PASSWORD = process.env.MEMPHIS_PASSWORD;
+const MEMPHIS_ACCOUNTID = process.env.MEMPHIS_ACCOUNTID;
 
 /**
  * Connect to Memphis and consumer orders
@@ -24,26 +24,28 @@ const memphisConnect = async () => {
             stationName: "orders",
             consumerName: "email_service",
         });
-        logger.info(`ordersStation_consumer created`)
+        logger.info(`email_service consumer from 'orders' station created`)
 
-        notificationsStation_consumer = await memphis.consumer({
-            stationName: "notifications",
+        deliveryStation_consumer = await memphis.consumer({
+            stationName: "ready_to_deliver",
             consumerName: "email_service",
         });
-        logger.info(`notificationsStation_consumer created`)
+        logger.info(`email_service consumer from 'ready_to_deliver' station created`)
 
-        ordersStation_consumer.on("message", order => {
+        ordersStation_consumer.on("message", (order, context) => {
             // processing
-            logger.info("New order received")
+            logger.info("---> Orders station: New order received by the restaurant. Notifying the customer.")
             logger.info(order.getData().toString())
-            sendConfirmation(order);
+            order.ack()
+            // sendConfirmation(order);
         });
 
-        notificationsStation_consumer.on("message", notification => {
+        deliveryStation_consumer.on("message", (notification, context) => {
             // processing
-            logger.info("New notification requested")
+            logger.info("---> Ready_to_deliver station: An order is ready for delivery. Notifying the customer.")
             logger.info(notification.getData().toString())
-            sendNotificationViaEmail(notification);
+            notification.ack()
+            // sendNotificationViaEmail(notification);
         });
     }
     catch (ex) {

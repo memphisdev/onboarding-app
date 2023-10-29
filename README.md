@@ -106,19 +106,19 @@ It appears that the services try to connect to “Memphis” with the user “Fa
 
 **Once the user gets created, the pods will restart automatically and reconnect with Memphis.**
 
-5\. Order food!
+5\. Order food! (API guide)
 ---------------
 
-To expose the `orders-service` through localhost, run -
+Welcome
 
 ```
-kubectl port-forward service/orders 9001:80 --namespace fastmart > /dev/null &
+curl order-service:3001/api/info
 ```
 
 Get the menu
 
 ```
-curl localhost:9001/api/menu
+curl order-service:3001/api/menu
 ```
 
 Output -
@@ -127,10 +127,10 @@ Output -
 {“items”:\[{“name”:”burger”,”price”:50},{“name”:”fries”,”price”:20},{“name”:”coke”,”price”:10}\]}
 ```
 
-Make an order
+Place an order
 
 ```
-curl -X POST localhost:9001/api/orders -d ‘{“items”:\[{“name”:”burger”,”quantity”:1}\], “email”:”test@gmail.com”}’ -H ‘Content-Type: application/json’
+curl -X POST order-service:3001/api/orders -d '{"items":[{"name":"burger","quantity":1}], "email":"test@gmail.com"}' -H 'Content-Type: application/json'
 ```
 
 An email should arrive shortly at the email address specified above.

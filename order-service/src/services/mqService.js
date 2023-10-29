@@ -1,10 +1,10 @@
-const memphis = require("memphis-dev");
+const { memphis } = require('memphis-dev');
 const { logger } = require('./loggerService')
-const MEMPHIS_HOST = process.env.MEMPHIS_HOST || 'localhost'; // create MQ connection string using environment variable
-const MEMPHIS_USERNAME = process.env.MEMPHIS_USERNAME || 'fastmart';
-const MEMPHIS_PASSWORD = process.env.MEMPHIS_PASSWORD || 'memphis';
-const MEMPHIS_ACCOUNTID = process.env.MEMPHIS_ACCOUNTID || '212111111';
-let ordersStation_producer = null;
+const MEMPHIS_HOST = process.env.MEMPHIS_HOST;
+const MEMPHIS_USERNAME = process.env.MEMPHIS_USERNAME;
+const MEMPHIS_PASSWORD = process.env.MEMPHIS_PASSWORD;
+const MEMPHIS_ACCOUNTID = process.env.MEMPHIS_ACCOUNTID;
+let orders_service_producer = null;
 
 const memphisConnect = async () => {
     try {
@@ -17,11 +17,11 @@ const memphisConnect = async () => {
         });
         logger.info(`Memphis - connection established`)
 
-        ordersStation_producer = await memphis.producer({
+        orders_service_producer = await memphis.producer({
             stationName: "orders",
-            producerName: "order_service",
+            producerName: "orders_service",
         });
-        logger.info(`ordersStation_producer created`)
+        logger.info(`orders_service producer created`)
     } catch(ex) {
         logger.log('fatal',`Memphis - ${ex}`);
         memphis.close();
@@ -34,8 +34,8 @@ const memphisConnect = async () => {
  * @param {Object} order - order object containing order details
  */
 const publishOrderToStation = (order) => {
-    ordersStation_producer.produce({message: Buffer.from(JSON.stringify(order))});
-    logger.info(`Memphis - order ${order._id} placed`);
+    orders_service_producer.produce({message: Buffer.from(JSON.stringify(order))});
+    logger.info(`---> The order has been forwarded to the restaurant.`);
 }
 
 /**
@@ -50,7 +50,7 @@ const publishOrderToStation = (order) => {
     const stationServices = {
         publishOrderToStation: publishOrderToStation
     }
-    // inject exchangeServices in request object
+    // // inject exchangeServices in request object
     req.stationServices = stationServices;
     next();
 }

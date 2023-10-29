@@ -1,10 +1,9 @@
-const memphis = require("memphis-dev");
-const { processOrder } = require('../controllers/orderController');
+const { memphis } = require('memphis-dev');
 const { logger } = require('./loggerService');
-const MEMPHIS_HOST = process.env.MEMPHIS_HOST || 'localhost'; // create MQ connection string using environment variable
-const MEMPHIS_USERNAME = process.env.MEMPHIS_USERNAME || 'fastmart';
-const MEMPHIS_PASSWORD = process.env.MEMPHIS_PASSWORD || 'memphis';
-const MEMPHIS_ACCOUNTID = process.env.MEMPHIS_ACCOUNTID || '212111111';
+const MEMPHIS_HOST = process.env.MEMPHIS_HOST; // create MQ connection string using environment variable
+const MEMPHIS_USERNAME = process.env.MEMPHIS_USERNAME;
+const MEMPHIS_PASSWORD = process.env.MEMPHIS_PASSWORD;
+const MEMPHIS_ACCOUNTID = process.env.MEMPHIS_ACCOUNTID;
 /**
  * Connect to Memphis and consumer orders
  */
@@ -23,24 +22,27 @@ const memphisConnect = async () => {
             stationName: "orders",
             consumerName: "resturant_service",
         });
-        logger.info(`ordersStation_consumer created`)
+        logger.info(`resturant_service consumer from orders station created`)
 
-        notificationStation_producer = await memphis.producer({
-            stationName: "notifications",
+        delivery_producer = await memphis.producer({
+            stationName: "ready_to_deliver",
             producerName: "resturant_service",
         });
+        logger.info(`resturant_service producer to ready_to_deliver station created`)
 
-        ordersStation_consumer.on("message", order => {
+        ordersStation_consumer.on("message", (order, context) => {
             // processing
-            logger.info("New order received")
-            logger.info(order.getData().toString())
-            processOrder(order, notificationStation_producer);
+            logger.info("---> A new order received:")
+            console.log(JSON.parse(order.getData().toString()))
+            order.ack();
+            logger.info("---> The order is currently in preparation, and the customer will be notified when it's ready for delivery.")
+            logger.info("---> The order is prepared and ready for delivery!")
+            delivery_producer.produce({message: Buffer.from(order.getData().toString())})
         });
 
     }
     catch (ex) {
         logger.log('fatal',`Memphis - ${ex}`);
-        memphis.close();
         process.exit();
     }
 }

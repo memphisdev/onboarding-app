@@ -1,5 +1,4 @@
 const { orderSchema } = require('../models/orderModel');
-const mongoose = require('mongoose');
 const { changeOrderStatus } = require('../services/mongoService')
 const { ORDER_ACCEPTED, ORDER_DELIVERED } = require('../resources/constants')
 
