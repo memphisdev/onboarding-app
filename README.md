@@ -14,7 +14,7 @@ To access additional tutorials, code examples, and guides,<br>kindly explore the
 To showcase the interaction of microservices and event-driven architecture with Memphis.dev as a message broker,<br>We developed <b>Fastmart - The Fastest Food Delivery App Ever Created In The History Of Mankind 🎉</b>
 
 ## High-Level Plan
-
+<img src="https://github.com/memphisdev/onboarding-app/blob/master/docs/High-level diagram.jpeg"/>
 
 1.  Sign up to Memphis Cloud [here](https://memphis.dev).
 2.  Clone “Fastmart” [GitHub](https://github.com/yanivbh1/FastMart) repo.
