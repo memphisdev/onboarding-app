@@ -11,19 +11,33 @@ To access additional tutorials, code examples, and guides,<br>kindly explore the
 </div>
 
 <br>
-To showcase the interaction of microservices and event-driven architecture with Memphis.dev as a message broker,<br>We developed <b>Fastmart - The Fastest Food Delivery App Ever Created In The History Of Mankind 🎉</b>
+To showcase the interaction of microservices and event-driven architecture with Memphis.dev as a message broker, We developed <b>Fastmart - The Fastest Food Delivery App Ever Created In The History Of Mankind 🎉</b>
 
-## High-Level Plan
+## 📌 Good to know Memphis.dev concepts before
+- <b>Station</b>: A station is a distributed unit that stores messages/events/records. Similar to Kafka's topics and RabbitMQ's queues. Each station has a retention policy, which defines when and how messages will be removed from the station—for example, by the number of stored messages, store time, or total size.
+
+- <b>Producer</b>: A producer represents the originating application or service responsible for sending data or messages to the broker or, more specifically, to a station
+
+- <b>Consumer</b>: A consumer is a client responsible for retrieving data or messages from the broker, particularly from the station.
+
+## 🏗️ High-Level Diagram
 <img src="https://github.com/memphisdev/onboarding-app/blob/master/docs/High-level diagram.jpeg"/>
 
-1.  Sign up to Memphis Cloud [here](https://memphis.dev).
-2.  Clone “Fastmart” [GitHub](https://github.com/yanivbh1/FastMart) repo.
-3.  Review the code, the different services, and how they interact with each other
-4.  Deploy “Fastmart” over Kubernetes
-5.  Order food!
+<br><b>From left to right:</b>
+- <b>Orders Service</b>: The Orders Service plays a pivotal role in the system by serving as the interface for customers to place orders, managing these orders, and subsequently routing them to the Memphis Orders Station.
+Acts as a Memphis Producer.
 
-Let’s start!
-============
+- <b>Orders station</b>: A queue for incoming orders.
+
+- <b>Restaurant Service</b>: The Restaurant Service takes on the critical responsibilities of receiving and processing new orders, ensuring their preparation, and ultimately queuing them for delivery.
+Acts as a Memphis Consumer.
+
+- <b>Email Service</b>: Its primary duty involves notifying customers about the status of their orders through email communication. This process is tailored to trigger distinct types of email messages corresponding to each specific message by its station.
+Acts as a Memphis Consumer from two stations simultaneously.
+
+- <b>Delivery Station</b>: A queue for incoming deliveries.
+
+## Getting started
 
 1\. Sign up to Memphis.dev Cloud
 --------------------------------
