@@ -54,14 +54,14 @@ Using a message broker instead, for example, REST for microservice communication
 2. <a href="https://cloud.memphis.dev">Signup</a> to Memphis.dev Cloud or <a href="https://memphis.dev/docs">Deploy</a> the self-hosted version
 3. For the next step, you would need to:
    1. Copy your broker's `hostname`
-   2. Create a user of type `Client`
-   3. For cloud users only - Copy your `Account ID`
+   2. **Cloud users only** - Copy your `Account ID`
+4. Create a client-type user
 4. For the services `order` and `restaurant` create a `.env` file, place it in the service's root dir with the below variables, and values from step 3:
 ```
-MEMPHIS_HOST = ""
-MEMPHIS_USERNAME = ""
-MEMPHIS_PASSWORD = ""
-MEMPHIS_ACCOUNTID = ""
+MEMPHIS_HOST = ""      # Broker hostname
+MEMPHIS_USERNAME = ""  # Client-type username
+MEMPHIS_PASSWORD = ""  # Client-type user password
+MEMPHIS_ACCOUNTID = "" # If not cloud can be ignored
 ```
 5. For the service `email` create a `.env` file, place it in the service's root dir with the below variables, and values from step 3:
 ```
@@ -69,10 +69,10 @@ MEMPHIS_HOST = ""
 MEMPHIS_USERNAME = ""
 MEMPHIS_PASSWORD = ""
 MEMPHIS_ACCOUNTID = ""
-EMAIL_ID="" # From
-EMAIL_PWD="" # Password
+EMAIL_ID=""                # From
+EMAIL_PWD=""               # Email Password
 EMAIL_SERVICE="gmail"
-EMAIL_RECIPIENT="" # cc
+EMAIL_RECIPIENT=""         # cc
 ```
 6. Within each service's root dir, please run `node index.js`
 7. <b>Try it out!</b> (replace the `order-service:3001` with your service. Usually `localhost:3001`)
